@@ -15,8 +15,8 @@ class Guest extends React.Component {
         </td>
         <td>
           <button
-            type='button'
-            className='close'
+            type="button"
+            className="close"
             onClick={this.onRemoveClick.bind(this)}
           >
             <span>&times;</span>
