@@ -3,10 +3,17 @@ import React from 'react';
 class Book extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { read: this.props.read };
+    this.state = {
+      read: this.props.read,
+    };
   }
 
-  // TODO add the missing event!
+  toggleRead() {
+    this.setState({
+      read: !this.state.read,
+    });
+  }
+
   render() {
     return (
       <tr>
@@ -15,8 +22,9 @@ class Book extends React.Component {
         </td>
         <td>
           <input
-            type='checkbox'
+            type="checkbox"
             checked={this.state.read}
+            onChange={this.toggleRead.bind(this)}
           />
         </td>
       </tr>

@@ -13,7 +13,7 @@ class Book extends React.Component {
 
 // TODO
 Book.defaultProps = {
-  title: "Default title",
+  title: 'Default title',
   read: false,
 };
 
@@ -27,7 +27,7 @@ class Library extends React.Component {
         {/* don't declare any attributes here */}
         <li><Book /></li>
         {/* TODO pass the title and read values to Book by using the Book tag attributes */}
-        <li><Book title="Second book title" read={true} /></li>
+        <li><Book title="Second book title" read /></li>
       </ul>
     );
   }

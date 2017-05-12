@@ -5,53 +5,55 @@ class BookForm extends React.Component {
     super();
     this.state = {
       title: '',
-      read: false
+      read: false,
     };
   }
 
   changeTitle(ev) {
-    // TODO change the title
+    this.setState({
+      title: ev.target.value,
+    });
   }
   changeRead() {
-    // TODO change the read value
+    this.setState({
+      read: !this.state.read,
+    });
   }
   addBook() {
-    // TODO update the parent!
-
-    // reset the inputs
+    this.props.onBook(this.state);
     this.setState({
       title: '',
-      read: false
+      read: false,
     });
   }
   render() {
     return (
       <div>
-        <div className='form-group'>
-          <label htmlFor='title'>Title</label>
+        <div className="form-group">
+          <label htmlFor="title">Title</label>
           <input
             value={this.state.title}
-            onChange={this.changeTitle}
-            placeholder='Title' type='text'
-            className='form-control'
-            id='title'
+            onChange={this.changeTitle.bind(this)}
+            placeholder="Title" type="text"
+            className="form-control"
+            id="title"
           />
         </div>
         <div className="form-group">
-          <label htmlFor='read'>
+          <label htmlFor="read">
             <span>Read: </span>
             <input
               checked={this.state.read}
-              onChange={this.changeRead}
-              type='checkbox'
-              id='read'
+              onChange={this.changeRead.bind(this)}
+              type="checkbox"
+              id="read"
             />
           </label>
         </div>
-        <div className='form-group'>
+        <div className="form-group">
           <button
-            className='btn btn-default'
-            onClick={this.addBook}
+            className="btn btn-default"
+            onClick={this.addBook.bind(this)}
           >Add Book</button>
         </div>
       </div>
