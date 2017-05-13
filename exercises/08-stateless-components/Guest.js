@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 class Guest extends React.Component {
   onRemoveClick() {
@@ -11,9 +11,9 @@ class Guest extends React.Component {
         <td>{this.props.children}</td>
         <td>
           <button
-            type='button'
-            className='close'
-            onClick={this.onRemoveClick.bind(this)}
+            type="button"
+            className="close"
+            onClick={ev => this.onRemoveClick(ev)}
           >
             <span>&times;</span>
           </button>
@@ -24,7 +24,9 @@ class Guest extends React.Component {
 }
 
 Guest.propTypes = {
-  onRemove: React.PropTypes.func.isRequired
+  onRemove: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  children: PropTypes.any.isRequired,
 };
 
 export default Guest;

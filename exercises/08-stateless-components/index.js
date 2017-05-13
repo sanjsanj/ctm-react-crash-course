@@ -1,39 +1,43 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
-import GuestList from './GuestList.js';
-import BirthdayInfo from './BirthdayInfo.js';
+import GuestList from './GuestList';
+import BirthdayInfo from './BirthdayInfo';
 
-class BirthdayContentPage extends React.Component {
-  render() {
-    return (
-      <div>
-        <h1>Birthday Party</h1>
-        <BirthdayInfo/>
-        <GuestList
-          guestList={this.props.guestList}
-        />
-      </div>
-    );
-  }
-}
+const BirthdayContentPage = ({ guestList }) => (
+  <div>
+    <h1>Birthday Party</h1>
+    <BirthdayInfo />
+    <GuestList
+      guestList={guestList}
+    />
+  </div>
+);
 
-export default class extends React.Component {
-  render() {
-    const guestList = [{
-      name: 'First Person',
-      brings: 'Champanhe'
-    }, {
-      name: 'Second Person',
-      brings: 'Cake'
-    }, {
-      name: 'Third Person',
-      brings: 'Beer'
-    }];
+BirthdayContentPage.propTypes = {
+  guestList: PropTypes.array.isRequired,
+};
 
-    return (
-      <BirthdayContentPage
-        guestList={guestList}
-      />
-    );
-  }
-}
+const App = ({ startingGuestList }) => (
+  <BirthdayContentPage
+    guestList={startingGuestList}
+  />
+);
+
+App.propTypes = {
+  startingGuestList: PropTypes.array.isRequired,
+};
+
+App.defaultProps = {
+  startingGuestList: [{
+    name: 'First Person',
+    brings: 'Champanhe',
+  }, {
+    name: 'Second Person',
+    brings: 'Cake',
+  }, {
+    name: 'Third Person',
+    brings: 'Beer',
+  }],
+};
+
+export default App;
