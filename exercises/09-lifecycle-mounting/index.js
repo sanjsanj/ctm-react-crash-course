@@ -1,18 +1,27 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 class Count extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      count: 1
+      count: 1,
     };
   }
+
   componentWillMount() {
     console.clear();
-    // TODO
+    this.setState({
+      count: 2,
+    });
   }
-  // TODO implement componentDidMount
+
+  componentDidMount() {
+    console.log(this.state.count);
+    console.log(ReactDOM.findDOMNode(this));
+  }
+
   render() {
     console.log('rendering');
     return (
