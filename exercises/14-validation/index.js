@@ -1,6 +1,6 @@
 import React from 'react';
-import BookForm from './BookForm.js';
-import Book from './Book.js';
+import BookForm from './BookForm';
+import Book from './Book';
 
 class Books extends React.Component {
   constructor(props) {
@@ -9,32 +9,30 @@ class Books extends React.Component {
     this.state = {
       books: [{
         title: 'Professional Node.js',
-        author: 'Pedro Teixeira'
-      }]
+        author: 'Pedro Teixeira',
+      }],
     };
   }
   onBook(book) {
     this.state.books.push(book);
 
     this.setState({
-      books: this.state.books
+      books: this.state.books,
     });
   }
   render() {
-    const books = this.state.books.map(function(book, index) {
-      return (
-        <Book
-          key={index}
-          title={book.title}
-          read={book.read}
-        />
-      );
-    });
+    const books = this.state.books.map((book, index) => (
+      <Book
+        key={index}
+        title={book.title}
+        read={book.read}
+      />
+      ));
 
     return (
       <div>
         <BookForm
-          onBook={this.onBook.bind(this)}
+          onBook={ev => this.onBook(ev)}
         />
         <table>
           <thead>

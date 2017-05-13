@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class BookForm extends React.Component {
   constructor(props) {
@@ -6,17 +7,17 @@ class BookForm extends React.Component {
 
     this.state = {
       title: '',
-      read: false
+      read: false,
     };
   }
   changeTitle(ev) {
     this.setState({
-      title: ev.target.value
+      title: ev.target.value,
     });
   }
   changeRead() {
     this.setState({
-      read: !this.state.read
+      read: !this.state.read,
     });
   }
   addBook() {
@@ -26,41 +27,40 @@ class BookForm extends React.Component {
 
     this.props.onBook(this.state);
 
-    // reset the inputs
     this.setState({
       title: '',
-      read: false
+      read: false,
     });
   }
   render() {
     return (
       <div>
-        <div className='form-group'>
-          <label htmlFor='title'>Title</label>
+        <div className="form-group">
+          <label htmlFor="title">Title</label>
           <input
             value={this.state.title}
-            onChange={this.changeTitle.bind(this)}
-            placeholder='Title'
-            type='text'
-            className='form-control'
-            id='title'
+            onChange={ev => this.changeTitle(ev)}
+            placeholder="Title"
+            type="text"
+            className="form-control"
+            id="title"
           />
         </div>
         <div className="form-group">
-          <label htmlFor='read'>
+          <label htmlFor="read">
             <span>Read: </span>
             <input
               checked={this.state.read}
-              onChange={this.changeRead.bind(this)}
-              type='checkbox'
-              id='read'
+              onChange={ev => this.changeRead(ev)}
+              type="checkbox"
+              id="read"
             />
           </label>
         </div>
-        <div className='form-group'>
+        <div className="form-group">
           <button
-            className='btn btn-default'
-            onClick={this.addBook.bind(this)}
+            className="btn btn-default"
+            onClick={ev => this.addBook(ev)}
           >
             Add Book
           </button>
@@ -70,6 +70,8 @@ class BookForm extends React.Component {
   }
 }
 
-// TODO propTypes
+BookForm.propTypes = {
+  onBook: PropTypes.func.isRequired,
+};
 
 export default BookForm;
