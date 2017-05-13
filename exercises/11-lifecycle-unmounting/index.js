@@ -5,17 +5,20 @@ class Display extends React.Component {
     super(props);
 
     this.state = {
-      count: 0
+      count: 0,
     };
+  }
+
+  componentDidMount() {
+    this.interval = setInterval(this.tick.bind(this), 100);
+  }
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
   tick() {
     this.setState({
-      count: this.state.count + 1
+      count: this.state.count + 1,
     });
-  }
-  // TODO implement `componentWillUnmount`
-  componentDidMount() {
-    this.interval = setInterval(this.tick.bind(this), 100);
   }
   render() {
     return (
@@ -33,17 +36,18 @@ export default class extends React.Component {
 
     this.state = {
       count: 0,
-      show: false
+      show: false,
     };
-  }
-  tick() {
-    this.setState({
-      count: this.state.count + 1,
-      show: !this.state.show
-    });
   }
   componentDidMount() {
     setInterval(this.tick.bind(this), 1000);
+  }
+
+  tick() {
+    this.setState({
+      count: this.state.count + 1,
+      show: !this.state.show,
+    });
   }
   render() {
     const display = this.state.show ? (
