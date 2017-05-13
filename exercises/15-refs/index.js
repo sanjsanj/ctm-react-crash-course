@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 class User extends React.Component {
   constructor(props) {
@@ -7,34 +6,43 @@ class User extends React.Component {
 
     this.state = {
       first: '',
-      last: ''
+      last: '',
     };
   }
+
   changeName() {
-    // TODO
+    this.setState({
+      first: this.textFirst.value,
+      last: this.textLast.value,
+    });
+    console.log(`this.first.value is ${this.textFirst.value}`);
+    console.log(`this.last.value is ${this.textLast.value}`);
   }
+
   render() {
     return (
       <div>
-        <div className='form-group'>
-          <label htmlFor='first'>First Name</label>
+        <div className="form-group">
+          <label htmlFor="first">First Name</label>
           <input
             value={this.state.first}
-            onChange={this.changeName.bind(this)}
-            type='text'
-            className='form-control'
-            id='first'
+            onChange={ev => this.changeName(ev)}
+            type="text"
+            className="form-control"
+            id="first"
+            ref={(input) => { this.textFirst = input; }}
           />
         </div>
-        <div className='form-group'>
-          <label htmlFor='last'>Last Name</label>
-            <input
-              value={this.state.last}
-              onChange={this.changeName.bind(this)}
-              type='text'
-              className='form-control'
-              id='last'
-            />
+        <div className="form-group">
+          <label htmlFor="last">Last Name</label>
+          <input
+            value={this.state.last}
+            onChange={ev => this.changeName(ev)}
+            type="text"
+            className="form-control"
+            id="last"
+            ref={(input) => { this.textLast = input; }}
+          />
         </div>
       </div>
     );
