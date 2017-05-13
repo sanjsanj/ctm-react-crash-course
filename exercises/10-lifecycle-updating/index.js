@@ -6,11 +6,19 @@ class Display extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showColon: true
+      showColon: true,
     };
   }
-  // TODO componentWillReceiveProps
-  // TODO shouldComponentUpdate
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      showColon: nextProps.ms > 500,
+    });
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return (nextProps.ms % 5) === 0;
+  }
+
   render() {
     const colon = this.state.showColon ? ':' : ' ';
 
@@ -29,30 +37,31 @@ export default class extends React.Component {
     this.state = {
       s: 0,
       ms: 0,
-      start: new Date()
+      start: new Date(),
     };
   }
 
-  tick() {
-    const diff = timediff(this.state.start, new Date());
-
-    this.setState({
-      ms: diff.milliseconds,
-      s: diff.seconds
-    });
+  componentDidMount() {
+    this.tock();
   }
   tock() {
     this.tick();
     raf(this.tock.bind(this));
   }
-  componentDidMount() {
-    this.tock();
+  tick() {
+    const diff = timediff(this.state.start, new Date());
+
+    this.setState({
+      ms: diff.milliseconds,
+      s: diff.seconds,
+    });
   }
   reset() {
     this.setState({
-      start: new Date()
+      start: new Date(),
     });
   }
+
   render() {
     return (
       <div>
