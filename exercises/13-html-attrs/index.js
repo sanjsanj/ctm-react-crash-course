@@ -1,32 +1,31 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
+import GuestList from './GuestList';
+import BirthdayInfo from './BirthdayInfo';
 
-import GuestList from './GuestList.js';
-import BirthdayInfo from './BirthdayInfo.js';
+const BirthdayContentPage = ({ guestList }) => (
+  <div>
+    <h1>Birthday Party</h1>
+    <BirthdayInfo />
+    <GuestList
+      guestList={guestList}
+    />
+  </div>
+);
 
-const BirthdayContentPage = ({
-  guestList
-}) => {
-  return (
-    <div>
-      <h1>Birthday Party</h1>
-      <BirthdayInfo/>
-      <GuestList
-        guestList={guestList}
-      />
-    </div>
-  );
+BirthdayContentPage.propTypes = {
+  guestList: PropTypes.array.isRequired,
 };
 
 const App = () => {
   const guestList = [{
     name: 'First Person',
-    brings: 'Champanhe'
+    brings: 'Champanhe',
   }, {
     name: 'Second Person',
-    brings: 'Cake'
+    brings: 'Cake',
   }, {
     name: 'Third Person',
-    brings: 'Beer'
+    brings: 'Beer',
   }];
 
   return (

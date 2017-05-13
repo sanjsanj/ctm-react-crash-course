@@ -1,29 +1,29 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 const Guest = ({
   onRemove,
   name,
-  children
-}) => {
-  return (
-    <tr>
-      <td>{name}</td>
-      <td>{children}</td>
-      <td>
-        <button
-        type='button'
-        className='close'
+  children,
+}) => (
+  <tr>
+    <td>{name}</td>
+    <td>{children}</td>
+    <td>
+      <button
+        type="button"
+        className="close"
         onClick={() => onRemove(name)}
-        >
-          <span>&times;</span>
-        </button>
-      </td>
-    </tr>
+      >
+        <span>&times;</span>
+      </button>
+    </td>
+  </tr>
   );
-};
 
 Guest.propTypes = {
-  onRemove: React.PropTypes.func.isRequired
+  onRemove: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  children: PropTypes.string.isRequired,
 };
 
 export default Guest;
